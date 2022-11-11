@@ -86,3 +86,23 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+var totalMonths = 0; var total = 0; var greatestIncrease = [0 , 0]; var greatestDecrease = [0 , 0];
+
+for (var i = 0; i < finances.length; i++) {
+    totalMonths++;
+    total += finances[i][1];
+    if (finances[i][1] > greatestIncrease[1]) {
+        greatestIncrease[1] = finances[i][1];
+        greatestIncrease[0] = finances[i][0];
+    } else if (finances[i][1] < greatestDecrease[1]) {
+        greatestDecrease[1] = finances[i][1];
+        greatestDecrease[0] = finances[i][0];
+    } else {
+        continue;
+    }
+}
+
+var averageChange = total / totalMonths;
+console.log("Financial Analysis" + "\n" + "----------------------------" + "\n" + "Total Months: " + totalMonths + "\n"  + "Total: $" + total + "\n" + "Average Change: $" + Math.ceil(averageChange/100)*100 + "\n" + "Greatest Increase in profits: " + greatestIncrease[0] + " ($" + greatestIncrease[1] + ")" + "\n" + "Greatest Decrease in profits: " + greatestDecrease[0] + " ($" + greatestDecrease[1] + ")");
+
